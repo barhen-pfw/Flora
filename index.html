@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C&S Flora Ordering Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+    
+    <div class="container">
+        <header>
+            <h1>C&S Flower Ordering Cart</h1>
+            <div class="shopping">
+                <img src="image/shopping.svg">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+
+        <div class="list">
+          
+        </div>
+    </div>
+    <div class="card">
+        <h1>Summary</h1>
+        <p class="para">Please review your order carefully before submitting it for processing.</p>
+        <ul class="listCard">
+        </ul>
+        <div class="checkOut">
+            <div class="total" >$0</div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+   <div class="container ">
+    <h1>C&S Floral Order </h1>
+    <form action="" >
+        <div class="form">
+        <fieldset>
+            <legend style="align-items: center;">Please fill out this form with the required information</legend>
+            <div class="info">
+                <label for="customer-account">Your C&S CUSTOMER ACCOUNT Number: <input id="account-number" type="text" required/></label>
+            </div>
+            <div class="info">
+                 <label for="customer-name">Your Name  : <input id="customer-name" type="text" autocomplete="customer-name" required/> </label>  
+                 <div class="info">
+                    <label for="store-name"> Store Name : <input id="store-name" type="text" autocomplete="store-name" required/> </label>  
+               </div>
+            </div>
+            <div class="info">
+                <label for="phone-num">Your contact phone number:<input id="phone-num" type="tel" required/></label>
+            </div>
+            <div class="info">
+                  <label for="email">Your Email (please print): <input id="email" type="email"></label>
+            </div>
+            <label for="confirmation">Would you like an Email Confirmation? <br> 
+                Yes <input id="confirmation" type="radio" name="confirm" class="inline">
+                No <input id="confirmation" type="radio" name="confirm" class="inline">
+            </label>
+            <div class="info_d">
+                <label for="date">Date: <input id="date" type="date"></label>
+             </div>
+
+             <div class="question-block">
+                <label for="css-questions">Comment:</label>
+              </div>
+              <div class="answer">
+                <textarea id="css-questions" name="css-questions" rows="5" cols="24" placeholder="comment..."></textarea>
+        </fieldset>
+    </div>
+        <input type="submit" value="Submit">
+    </form>
+
+   </div>
+    <script src="app.js"></script>
+</body>
+</html>
