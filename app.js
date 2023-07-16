@@ -153,26 +153,31 @@ function initApp(){
             <img src="image/${value.image}">
             <div class="title">${value.name}</div>
             <div class="price">$${value.price.toLocaleString()}</div>
+            <div class="info_d">
+            <label for="date">Delivery Date: <input id="ddate" type="date" class="form-control delivery-input"></label>
+         </div>
             <div class="col-md-4 quantity">
             <label for="quantity">Quantity:</label>
             <input id="quantity" type="number" value ="1" class="form-control quantity-input">
         </div><br>
 
-            <button onclick="addToCard(${key}, this.parentElement.querySelector('.quantity-input').value)">Add To Card</button>`;
+            <button onclick="addToCard(${key}, this.parentElement.querySelector('.quantity-input').value,this.parentElement.querySelector('.delivery-input').value)">Add To Card</button>`;
         list.appendChild(newDiv);
        
     })
 }
 initApp();
-function addToCard(key,quantity){
+function addToCard(key,quantity,delivery){
     if(listCards[key] == null){
         // copy product form list to list card
         listCards[key] = JSON.parse(JSON.stringify(products[key]));
         listCards[key].quantity = quantity;
+        listCards[key].delivery = delivery;
     }else{
         var sum = parseInt(listCards[key].quantity, 10) + parseInt(quantity, 10);
         changeQuantity(key, sum);
     }
+    console.log(listCards[key].delivery);
     reloadCard();
 }
 function reloadCard(){
@@ -251,6 +256,7 @@ function exportToExcel(filename) {
       <tr>
         <th>Item</th>
         <th>Price</th>
+        <th>Delivery Date</th>
         <th>Quantity</th>
         <th>Total</th>
       </tr>
@@ -262,6 +268,7 @@ function exportToExcel(filename) {
         <tr>
           <td>${item.name}</td>
           <td>$${item.price.toFixed(2)}</td>
+          <td>${item.delivery}</td>
           <td>${item.quantity}</td>
           <td>$${total.toFixed(2)}</td>
         </tr>
@@ -276,16 +283,19 @@ function exportToExcel(filename) {
     <tr>
       <td></td>
       <td></td>
+      <td></td>
       <td><strong>Subtotal</strong></td>
       <td>$${subtotal.toFixed(2)}</td>
     </tr>
     <tr>
     <td></td>
     <td></td>
+    <td></td>
     <td><strong>Discount</strong></td>
     <td>$${discount.toFixed(2)}</td>
   </tr>
   <tr>
+    <td></td>
     <td></td>
     <td></td>
     <td><strong>Total</strong></td>
@@ -312,5 +322,14 @@ function exportListCardsToExcel() {
   submitButton.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default button behavior
     exportListCardsToExcel();
+    location.reload();
+    smoothscroll();
   });
 
+  function smoothscroll(){
+    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (currentScroll > 0) {
+         window.requestAnimationFrame(smoothscroll);
+         window.scrollTo (0,currentScroll - (currentScroll/5));
+    }
+};
